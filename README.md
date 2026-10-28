@@ -38,3 +38,14 @@ Tùy chọn: đăng nhập bằng tài khoản bunnyquant.com (`/auth/proxy/toke
 
 ## Cố ý không có
 Tên gói, giá, nút nâng cấp, mua trong app, đặt lệnh, thông báo đẩy, tên phương pháp và tên gói (chỉ dùng từ thường: biến động, rủi ro, cắt lỗ, chốt lời). Hết lượt trong ngày chỉ báo "hôm nay vậy là đủ rồi", không hiện con số. Kết quả được giữ trên máy tới khi nến đóng nên mở lại app không tốn lượt.
+
+## Screenshots
+
+Real candles from public market data; the entry, stop-loss and take-profit lines in these pictures are sample values for illustration, not output of the production server. The app is light-theme only by design.
+
+<img src="marketing/screenshots/01-watchlist.png" width="230" alt="Watchlist">
+<img src="marketing/screenshots/02-chart.png" width="230" alt="Candlestick chart with entry, stop-loss and take-profit">
+<img src="marketing/screenshots/03-risk.png" width="230" alt="Key price levels and the movement-and-risk card">
+<img src="marketing/screenshots/04-chart-2.png" width="230" alt="Another symbol">
+
+Watchlist · Candlestick chart with entry, stop-loss and take-profit · Key price levels and the movement-and-risk card · Another symbol

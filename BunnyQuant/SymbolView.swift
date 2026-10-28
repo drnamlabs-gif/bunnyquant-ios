@@ -7,6 +7,7 @@ struct SymbolView: View {
     @State private var analysis: Analysis?
     @State private var loading = true
     @State private var problem: APIError?
+    @State private var scrollTo: String?
 
     private let frames: [(String, String, String)] = [("1h", "1 giờ", "1 hour"), ("1d", "Ngày", "Day"), ("1w", "Tuần", "Week")]
 
@@ -22,7 +23,7 @@ struct SymbolView: View {
                 if let a = analysis {
                     Card { CandleChart(candles: a.candles, levels: chartLevels(a)) }
                     if !chartLevels(a).isEmpty { levelsCard(a) }
-                    riskCard(a)
+                    riskCard(a).id("risk")
                     readingCard(a)
                 } else if loading {
                     ProgressView().padding(.top, 80)
@@ -34,14 +35,21 @@ struct SymbolView: View {
                        "Analysis only, not investment advice. Figures are estimated from historical data and can be wrong."))
                     .font(.caption).foregroundStyle(Palette.muted).multilineTextAlignment(.center)
             }
+            .scrollTargetLayout()
             .padding(16)
             .frame(maxWidth: 720)
             .frame(maxWidth: .infinity)
         }
+        .scrollPosition(id: $scrollTo, anchor: .top)
         .background(Palette.bg)
         .navigationTitle(item.name)
         .navigationBarTitleDisplayMode(.inline)
-        .task(id: interval) { await load() }
+        .task(id: interval) {
+            await load()
+            #if DEBUG   // chụp ảnh: -debugScrollRisk cuộn tới thẻ biến động và rủi ro
+            if CommandLine.arguments.contains("-debugScrollRisk") { try? await Task.sleep(nanoseconds: 800_000_000); scrollTo = "risk" }
+            #endif
+        }
     }
 
     private var header: some View {
